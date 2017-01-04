@@ -52,7 +52,8 @@ namespace JKorTech.ShipSections.KSPPluginFramework
         //}
         static MonoBehaviourExtended()
         {
-            UnityEngine.Random.seed = (int)(DateTime.Now - DateTime.Now.Date).TotalSeconds;
+            //UnityEngine.Random.seed = (int)(DateTime.Now - DateTime.Now.Date).TotalSeconds;
+            UnityEngine.Random.InitState((int)(DateTime.Now - DateTime.Now.Date).TotalSeconds);
         }
         #endregion
 

@@ -11,7 +11,7 @@ namespace JKorTech.ShipSections
             {
                 if (HighLogic.LoadedSceneIsEditor)
                 {
-                    return EditorLogic.fetch.ship;
+                    return EditorLogic.fetch.ship.Parts;
                 }
                 else if (HighLogic.LoadedSceneIsFlight)
                 {

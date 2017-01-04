@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using KSP.UI.Screens;
 
 namespace JKorTech.ShipSections
 {
@@ -7,7 +8,7 @@ namespace JKorTech.ShipSections
     {
         private const int WindowWidth = 400, WindowHeight = 200;
 
-        private readonly string AppLauncherIconLocation = "ShipSections/ShipSections";
+        private readonly string AppLauncherIconLocation = "ShipSections/Textures/ShipSections";
 
         internal override void DrawWindow(int id)
         {
@@ -81,6 +82,7 @@ namespace JKorTech.ShipSections
         internal override void OnDestroy()
         {
             ApplicationLauncher.Instance.RemoveModApplication(button);
+            GameEvents.onGUIApplicationLauncherReady.Remove(OnAppLauncherReady);
         }
     }
 }

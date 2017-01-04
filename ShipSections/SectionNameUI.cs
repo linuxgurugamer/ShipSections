@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using KSP.UI.Screens;
 
 namespace JKorTech.ShipSections
 {
@@ -112,6 +113,7 @@ namespace JKorTech.ShipSections
         internal override void OnDestroy()
         {
             ApplicationLauncher.Instance.RemoveModApplication(button);
+            GameEvents.onGUIApplicationLauncherReady.Remove(OnAppLauncherReady);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using KSP.UI.Screens;
 
 namespace JKorTech.ShipSections
 {
@@ -44,11 +45,11 @@ namespace JKorTech.ShipSections
             GameEvents.onEditorLoad.Add(EditorLoad);
         }
 
-        private void EditorLoad(ShipConstruct data0, CraftBrowser.LoadType data1)
+        private void EditorLoad(ShipConstruct data0, CraftBrowserDialog.LoadType data1)
         {
             switch (data1)
             {
-                case CraftBrowser.LoadType.Merge:
+                case CraftBrowserDialog.LoadType.Merge:
                     RenameSections(data0);
                     break;
             }
@@ -75,6 +76,7 @@ namespace JKorTech.ShipSections
             var sectionInfo = data1.FindModuleImplementing<SectionInfo>();
             if (data0 == ConstructionEventType.PartDetached)
             {
+                LogFormatted_DebugOnly("PartDetached.");
                 CopySectionDataToOtherPartInSection(sectionInfo, true);
             }
             if (data0 == ConstructionEventType.PartCreated && data1 == EditorLogic.RootPart)
@@ -85,11 +87,13 @@ namespace JKorTech.ShipSections
             }
             if(data0 == ConstructionEventType.PartAttached)
             {
+                LogFormatted_DebugOnly("PartAttached.");
                 sectionInfo.TrySetSectionBasedOnParent();
                 if (EditorLogic.fetch.symmetryMode != 1 && sectionInfo.isSectionRoot)
                     EnsureOnlyOneSectionRoot(sectionInfo);
 
             }
+            Debug.Log("Exiting EditorPartEvent");
         }
 
         private static void EnsureOnlyOneSectionRoot(SectionInfo sectionInfo)

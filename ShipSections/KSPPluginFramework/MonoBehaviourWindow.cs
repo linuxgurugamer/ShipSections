@@ -128,21 +128,14 @@ namespace JKorTech.ShipSections.KSPPluginFramework
             get { return _Visible; }
             set
             {
-                if (_Visible != value)
-                {
-                    if (value)
-                    {
-                        LogFormatted_DebugOnly("Adding Window to PostDrawQueue-{0}", WindowID);
-                        RenderingManager.AddToPostDrawQueue(5, this.DrawGUI);
-                    }
-                    else
-                    {
-                        LogFormatted_DebugOnly("Removing Window from PostDrawQueue", WindowID);
-                        RenderingManager.RemoveFromPostDrawQueue(5, this.DrawGUI);
-                    }
-                }
                 _Visible = value;
             }
+        }
+
+        void OnGUI()
+        {
+            if (Visible)
+                DrawGUI();
         }
 
         /// <summary>
