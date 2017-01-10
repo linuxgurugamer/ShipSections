@@ -108,6 +108,28 @@ namespace JKorTech.ShipSections
                     info.isSectionRoot = true;
                     info.InitializeAsNewSection();
                 }
+                else
+                {
+                    // Make sure that there is only one sectionRoot per section, and that the section data is fully initialized
+                    int cnt = section.Count(part => part.FindModuleImplementing<SectionInfo>().isSectionRoot);
+                    bool b = false;
+                    if (cnt > 1)
+                    {
+                        foreach (var p in section.SelectMany(part => part.FindModulesImplementing<SectionInfo>().Where(p => p.isSectionRoot)))
+                        {
+                            if (b)
+                            {
+                                p.isSectionRoot = false;
+                            }
+                            else
+                            {
+                                p.InitializeAsNewSection();
+                                b = true;
+                            }
+                        }
+                    }
+               
+                }
             }
             return sections;
         }

@@ -16,6 +16,8 @@ namespace JKorTech.ShipSections
         public override void OnAwake()
         {
             base.OnAwake();
+            if (initialName == "")
+                initialName = vessel.vesselName;
         }
 
         void OnDestroy()
