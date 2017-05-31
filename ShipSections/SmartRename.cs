@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace JKorTech.ShipSections
 {
@@ -11,12 +12,16 @@ namespace JKorTech.ShipSections
         private bool init;
 
         [KSPField(guiActive = false, isPersistant = true)]
-        private string initialName;
+        private string initialName = "none";
 
         public override void OnAwake()
         {
+            Debug.Log("SmartRename.OnAwake 1");
             base.OnAwake();
-            if (initialName == "")
+            if (vessel == null)
+                return;
+            Debug.Log("SmartRename.OnAwake 2");
+            if (initialName == "" || initialName == "none")
                 initialName = vessel.vesselName;
         }
 
@@ -32,6 +37,8 @@ namespace JKorTech.ShipSections
             {
                 UnityEngine.Debug.Log($"[{nameof(ShipSections)}] [{nameof(SmartRename)}] Updating initial vessel name to {data.to}");
                 initialName = data.to;
+                if (initialName == "")
+                    initialName = "none";
             }
         }
 

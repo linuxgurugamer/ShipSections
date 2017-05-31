@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using KSP.UI.Screens;
+// disabled until some use is found for this
+#if false
 
 namespace JKorTech.ShipSections
 {
@@ -86,3 +88,4 @@ namespace JKorTech.ShipSections
         }
     }
 }
+#endif
